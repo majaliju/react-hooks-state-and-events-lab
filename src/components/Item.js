@@ -3,10 +3,9 @@ import React, {useState} from "react";
 function Item({ name, category }) {
 
   // checking if the cart is populated (> 0; true) or empty (=0; false)
-  const [inCart, setInCart] = useState(true)
+  const [inCart, setInCart] = useState(false)
 
   // this function flips the switch and produces the opposite Boolean value
-// eslint-disable-next-line
   function putInCart() {
     return setInCart((inCart) => !inCart)
   }
@@ -15,12 +14,13 @@ function Item({ name, category }) {
   // otherwise, it'll show an empty cart, where inCart = false
   const className = inCart ? "in-cart" : ""
 
+  const buttonClass = inCart ? "Remove From Cart" : "Add to Cart"
 
   return (
     <li className={className}>
       <span>{name}</span>
       <span className="category">{category}</span>
-      <button className="add">Add to Cart</button>
+      <button className="add" onClick={putInCart}>{buttonClass}</button>
     </li>
   );
 }
