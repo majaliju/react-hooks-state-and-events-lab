@@ -4,14 +4,17 @@ import Item from "./Item";
 function ShoppingList({ items }) {
   const [selectedCategory, setSelectedCategory] = useState("All")
 
-  function handleChange(e) {
-    console.log(e.target.value)
-  }
 
-
-  // // my main issue is with this function here; 
+  //   // my main issue is with this series of functions here; 
   // // it's def not written properly but something here is 
   // // where I need to push forth on 
+
+  // // might not even be conceptually the right direction
+  // function handleChange(e) {
+  //   console.log(e.target.value)
+  // }
+
+
   // const itemsToDisplay = items.filter((item) => {
   //   // logic here was just re-factored from a previous lab
   //   if (selectedCategory === "All"){
