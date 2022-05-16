@@ -2,32 +2,26 @@ import React, {useState} from "react";
 import Item from "./Item";
 
 function ShoppingList({ items }) {
-  const [selectedCategory, setSelectedCategory] = useState("All")
+// help via Kyrian, his method of solving 
+
+    // create a variable to store filter components current and future state
+  const [showList, setShowList] = useState("All")
 
 
-  //   // my main issue is with this series of functions here; 
-  // // it's def not written properly but something here is 
-  // // where I need to push forth on 
+  // use this function to update my state as needed
+  function enactSetShowList(e){
+    setShowList(e.target.value)
+}
+    
+  // create a list whose elements are dependent on state
+  const itemsList = showList === "All" ? items : items.filter((item) => item.category === showList)
 
-  // // might not even be conceptually the right direction
-  // function handleChange(e) {
-  //   console.log(e.target.value)
-  // }
 
-
-  // const itemsToDisplay = items.filter((item) => {
-  //   // logic here was just re-factored from a previous lab
-  //   if (selectedCategory === "All"){
-  //     return true;
-  //   } else {
-  //     return item.value === setSelectedCategory;
-  //   }
-  // })
-
+//  console.log(items)
   return (
     <div className="ShoppingList">
       <div className="Filter">
-        <select name="filter">
+        <select name="filter" onChange={enactSetShowList}>
           <option value="All">Filter by category</option>
           <option value="Produce">Produce</option>
           <option value="Dairy">Dairy</option>
@@ -35,8 +29,8 @@ function ShoppingList({ items }) {
         </select>
       </div>
       <ul className="Items">
-        {items.map((item) => (
-          <Item key={item.id} onChange={handleChange} name={item.name} category={item.category} />
+        {itemsList.map((item) => (
+          <Item key={item.id}  name={item.name} category={item.category} />
         ))}
       </ul>
     </div>
